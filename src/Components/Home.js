@@ -10,10 +10,6 @@ function Home() {
         <div>
             <h1>Home Page</h1>
 
-            {/* fecth spi to test */}
-            
-
-
 
         </div>
     );
