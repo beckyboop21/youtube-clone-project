@@ -1,28 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import Nav from './Components/Nav';
-import Home from './Components/Home';
-import About from './Components/About';
-
-import { BrowserRouter as Router, Routes, Route, Switch } from "react-router-dom";
-
-
-
+import Header from './components/Header/Header';
+import SideBar from './components/SideBar/SideBar';
+import RecommendedVideos from './components/RecommendedVideos/RecommendedVideos';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
+
   return (
-    <Router>
-      <div className="App">
-
-        <Nav />
-        <Routes>
-        <Route path='/' exact element={<Home />} />
-        <Route path='/about' element={<About />} />
-        </Routes>
-        
-      </div>
-    </Router>
-
+    <div className="App">
+      <Router>
+      <Header />
+        <Switch>
+          <Route path='/'>
+            <div className="app__mainpage">
+              <SideBar />
+              <RecommendedVideos />
+            </div>
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
