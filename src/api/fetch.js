@@ -1,7 +1,19 @@
+import axios from 'axios';
 
-const URL = `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}`
+export const BASE_URL = 'https://youtube-v31.p.rapidapi.com';
 
-export function getFetch() {
-     return fetch(`${URL}`)
-     .then((res) => res.json())
-   }
+const options = {
+  params: {
+    maxResults: 50,
+  },
+  headers: {
+    'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+    'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
+  },
+};
+
+export const fetchFromAPI = async (url) => {
+  const { data } = await axios.get(`${BASE_URL}/${url}`, options);
+
+  return data;
+};

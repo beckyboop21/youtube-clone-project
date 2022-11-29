@@ -1,31 +1,36 @@
-import React from 'react';
-import SideBarRow from './../SideBarRow/SideBarRow';
-import './SideBar.css';
-import HomeIcon from '@material-ui/icons/Home';
-import WhatshotIcon from '@material-ui/icons/Whatshot';
-import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
-import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
-import HistoryIcon from '@material-ui/icons/History';
-import OndemandVideoIcon from '@material-ui/icons/OndemandVideo';
-import WatchLaterIcon from '@material-ui/icons/WatchLater';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import React from "react";
+import { Stack } from "@mui/material";
 
+import { categories } from "../utils/constants";
 
-const SideBar = () => {
-    return (
-        <div className='sidebar'>
-            <SideBarRow selected Icon={HomeIcon} title='Home' />
-            <SideBarRow Icon={WhatshotIcon} title='Trending' />
-            <SideBarRow Icon={SubscriptionsIcon} title='Subscription' />
-            <hr />
-            <SideBarRow Icon={VideoLibraryIcon} title='Library' />
-            <SideBarRow Icon={HistoryIcon} title='History' />
-            <SideBarRow Icon={OndemandVideoIcon} title='Your videos' />
-            <SideBarRow Icon={WatchLaterIcon} title='Watch later' />
-            <SideBarRow Icon={ThumbUpIcon} title='Liked vides' />
-            <hr />
-        </div>
-    )
-}
+const Categories = ({ selectedCategory, setSelectedCategory }) => (
+  <Stack
+    direction="row"
+    sx={{
+      overflowY: "auto",
+      height: { sx: "auto", md: "95%" },
+      flexDirection: { md: "column" },
+    }}
+  >
+    {categories.map((category) => (
+      <button
+        className="category-btn"
+        onClick={() => setSelectedCategory(category.name)}
+        style={{
+          background: category.name === selectedCategory && "#FC1503",
+          color: "white",
+        }}
+        key={category.name}
+      >
+        <span style={{ color: category.name === selectedCategory ? "white" : "red", marginRight: "15px" }}>
+          {category.icon}
+        </span>
+        <span style={{ opacity: category.name === selectedCategory ? "1" : "0.8" }}>
+          {category.name}
+        </span>
+      </button>
+    ))}
+  </Stack>
+);
 
-export default SideBar;
+export default Categories;
